@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# Add multiple tags to an image with Docker Hub automated builds
+# Credit to Nigel Brown
+# https://windsock.io/automated-docker-image-builds-with-multiple-tags/
+
+set -e
+
+# Parse image name for repo name
+tagStart=$(expr index "$IMAGE_NAME" :)
+repoName=${IMAGE_NAME:0:tagStart-1}
+
+# Tag and push image for each additional tag
+case $CACHE_TAG in
+    "1.1.1")
+        tags=( "1.1.1-alpine" "1.1.1-stable" "stable" "lts" "latest" )
+        for tag in "${tags[@]}"; do
+            docker tag $IMAGE_NAME ${repoName}:${tag}
+            docker push ${repoName}:${tag}
+        done
+        ;;
+    "1.1.0")
+        tags=( "1.1.0-alpine" "1.1.0-stable" )
+        for tag in "${tags[@]}"; do
+            docker tag $IMAGE_NAME ${repoName}:${tag}
+            docker push ${repoName}:${tag}
+        done
+        ;;
+    "1.0.2")
+        tags=( "1.0.2-alpine" "1.0.2-stable" )
+        for tag in "${tags[@]}"; do
+            docker tag $IMAGE_NAME ${repoName}:${tag}
+            docker push ${repoName}:${tag}
+        done
+        ;;
+    "1.1.1a")
+        tags=( "1.1.1a-alpine" )
+        for tag in "${tags[@]}"; do
+            docker tag $IMAGE_NAME ${repoName}:${tag}
+            docker push ${repoName}:${tag}
+        done
+        ;;
+    "1.1.0j")
+        tags=( "1.1.0j-alpine" )
+        for tag in "${tags[@]}"; do
+            docker tag $IMAGE_NAME ${repoName}:${tag}
+            docker push ${repoName}:${tag}
+        done
+        ;;
+    "1.0.2q")
+        tags=( "1.0.2q-alpine" )
+        for tag in "${tags[@]}"; do
+            docker tag $IMAGE_NAME ${repoName}:${tag}
+            docker push ${repoName}:${tag}
+        done
+        ;;
+    "1.1.1-build")
+        tags=( "build" )
+        for tag in "${tags[@]}"; do
+            docker tag $IMAGE_NAME ${repoName}:${tag}
+            docker push ${repoName}:${tag}
+        done
+        ;;
+    "1.1.1-lite")
+        tags=( "lite" "stable-lite" "lts-lite" )
+        for tag in "${tags[@]}"; do
+            docker tag $IMAGE_NAME ${repoName}:${tag}
+            docker push ${repoName}:${tag}
+        done
+        ;;
+    "1.1.1-distroless")
+        tags=( "distroless" "stable-distroless" "lts-distroless" )
+        for tag in "${tags[@]}"; do
+            docker tag $IMAGE_NAME ${repoName}:${tag}
+            docker push ${repoName}:${tag}
+        done
+        ;;
+    "1.1.1-dev")
+        tags=( "dev" "stable-dev" "lts-dev" )
+        for tag in "${tags[@]}"; do
+            docker tag $IMAGE_NAME ${repoName}:${tag}
+            docker push ${repoName}:${tag}
+        done
+        ;;
+    *)
+        :
+        ;;
+esac
