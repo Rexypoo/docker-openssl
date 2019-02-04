@@ -6,7 +6,7 @@ RUN apk add --no-cache \
     linux-headers \
     make \
     perl 
-ADD https://github.com/openssl/openssl/archive/OpenSSL_1_1_1-stable.tar.gz openssl-src.tar.gz
+ADD https://github.com/openssl/openssl/archive/OpenSSL_1_0_2-stable.tar.gz openssl-src.tar.gz
 RUN tar \
     --extract \
     --file openssl-src.tar.gz \
@@ -50,10 +50,10 @@ LABEL org.opencontainers.image.created=$BUILD_DATE \
       org.opencontainers.image.url="https://hub.docker.com/r/rexypoo/openssl" \
       org.opencontainers.image.documentation="https://hub.docker.com/r/rexypoo/openssl" \
       org.opencontainers.image.source="https://github.com/Rexypoo/docker-openssl" \
-      org.opencontainers.image.version="1.1.1" \
+      org.opencontainers.image.version="1.0.2" \
       org.label-schema.vcs-ref=$VCS_REF \
       org.opencontainers.image.licenses="(MIT AND OpenSSL)" \
-      org.opencontainers.image.ref.name="1.1.1-alpine" \
+      org.opencontainers.image.ref.name="1.0.2-alpine" \
       org.opencontainers.image.description="A lightweight openssl image built from source." \
       org.opencontainers.image.title="rexypoo/openssl" \
       org.label-schema.docker.cmd="docker run -it --rm rexypoo/openssl <arguments>" \
