@@ -44,6 +44,7 @@ You may need to adjust the `$PATH` environment variable in your image to priorit
 # License
 
 This project is subject to the MIT license included in this repository.
+
 The OpenSSL project is covered by one of two [licenses][OpenSSL Licenses]:
 1. For releases below 3.0.0 the [dual OpenSSL and SSLeay license] applies.
 2. For OpenSSL versions 3.0.0 and above the [Apache License v2] applies.

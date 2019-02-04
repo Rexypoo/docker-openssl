@@ -81,6 +81,13 @@ case $CACHE_TAG in
             docker push ${repoName}:${tag}
         done
         ;;
+    "testing")
+        tags=( "1.1.1-testing" )
+        for tag in "${tags[@]}"; do
+            docker tag $IMAGE_NAME ${repoName}:${tag}
+            docker push ${repoName}:${tag}
+        done
+        ;;
     *)
         :
         ;;

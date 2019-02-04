@@ -1,6 +1,3 @@
-ARG BUILD_DATE
-ARG VCS_REF
-
 FROM alpine AS build
 WORKDIR /build/tmp
 RUN apk add --no-cache \
@@ -45,6 +42,9 @@ RUN apk add --no-cache \
 ENTRYPOINT ["bash"]
 
 FROM clean AS release
+
+ARG BUILD_DATE
+ARG VCS_REF
 
 LABEL org.opencontainers.image.created=$BUILD_DATE \
       org.opencontainers.image.url="https://hub.docker.com/r/rexypoo/openssl" \
