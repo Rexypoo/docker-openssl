@@ -58,5 +58,5 @@ LABEL org.opencontainers.image.created=$BUILD_DATE \
       org.opencontainers.image.title="rexypoo/openssl" \
       org.label-schema.docker.cmd="docker run -it --rm rexypoo/openssl <arguments>" \
       org.label-schema.docker.cmd.devel="docker run -it --rm rexypoo/openssl:dev" \
-      org.label-schema.docker.cmd.debug="docker exec -it $CONTAINER sh" \
+      org.label-schema.docker.cmd.debug="docker exec -it <container> sh" \
       org.label-schema.docker.cmd.help="docker run -it --rm rexypoo/openssl list -help"
