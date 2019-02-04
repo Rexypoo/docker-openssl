@@ -1,3 +1,6 @@
+ARG BUILD_DATE
+ARG VCS_REF
+
 FROM alpine AS build
 WORKDIR /build/tmp
 RUN apk add --no-cache \
