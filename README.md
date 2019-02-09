@@ -1,6 +1,6 @@
 # docker-openssl
 
-A Docker build context create a clean Docker image with [OpenSSL]. The resulting files can be copied into another image to [update OpenSSL](#updating-openssl-in-docker-images) or the image can be [run from the command line](#running-openssl-from-the-command-line).
+A Docker build context to create a clean Docker image with [OpenSSL]. The resulting files can be copied into another image to [update OpenSSL](#updating-openssl-in-docker-images) or the image can be [run from the command line](#running-openssl-from-the-command-line).
 
 # Prerequisites
 
