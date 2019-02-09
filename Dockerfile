@@ -43,19 +43,14 @@ ENTRYPOINT ["bash"]
 
 FROM clean AS release
 
-ARG BUILD_DATE
-ARG VCS_REF
-
-LABEL org.opencontainers.image.created=$BUILD_DATE \
+LABEL org.opencontainers.image.authors="docker-openssl@rexypoo.com" \
       org.opencontainers.image.url="https://hub.docker.com/r/rexypoo/openssl" \
       org.opencontainers.image.documentation="https://hub.docker.com/r/rexypoo/openssl" \
       org.opencontainers.image.source="https://github.com/Rexypoo/docker-openssl" \
-      org.opencontainers.image.version="1.1.1" \
-      org.label-schema.vcs-ref=$VCS_REF \
+      org.opencontainers.image.vendor="rexypoo" \
       org.opencontainers.image.licenses="(MIT AND OpenSSL)" \
-      org.opencontainers.image.ref.name="1.1.1-alpine" \
-      org.opencontainers.image.description="A lightweight openssl image built from source." \
       org.opencontainers.image.title="rexypoo/openssl" \
+      org.opencontainers.image.description="A lightweight openssl image built from source." \
       org.label-schema.docker.cmd="docker run -it --rm rexypoo/openssl <arguments>" \
       org.label-schema.docker.cmd.devel="docker run -it --rm rexypoo/openssl:dev" \
       org.label-schema.docker.cmd.debug="docker exec -it <container> sh" \
