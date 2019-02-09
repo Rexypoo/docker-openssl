@@ -1,13 +1,28 @@
-FROM alpine AS build
+FROM alpine AS fetch_source
 WORKDIR /build/tmp
+ADD https://openssl.org/source/openssl-1.1.1a.tar.gz openssl-src.tar.gz
+
+FROM fetch_source AS verify
+ADD https://openssl.org/source/openssl-1.1.1a.tar.gz.asc \
+    openssl-src.tar.gz.asc
+ENV key_ids='8657ABB260F056B1E5190839D9C4D26D0E604491 \
+             7953AC1FBC3DC8B3B292393ED5E9E43F7DF9EE8C'
+COPY sh/gpg-add.sh gpg-add.sh
+RUN apk add --no-cache \
+    gnupg \
+    && for key_id in $key_ids; do \
+        ./gpg-add.sh "$key_id"; \
+    done \
+    && gpg --verify openssl-src.tar.gz.asc openssl-src.tar.gz
+
+FROM fetch_source AS build
 RUN apk add --no-cache \
     gcc \
     libc-dev \
     linux-headers \
     make \
-    perl 
-ADD https://github.com/openssl/openssl/archive/OpenSSL_1_0_2-stable.tar.gz openssl-src.tar.gz
-RUN tar \
+    perl \
+    && tar \
     --extract \
     --file openssl-src.tar.gz \
     --strip 1 \
