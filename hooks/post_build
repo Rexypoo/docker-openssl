@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Build additional targets
+
+set -e
+
+TARGETS='dev distroless lite'
+BUILD_TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+# Build each target
+build_target () {
+    docker build \
+        --label org.opencontainers.image.created="${BUILD_TIMESTAMP}" \
+        --label org.opencontainers.image.authors="docker-openssl@rexypoo.com" \
+        --label org.opencontainers.image.url="https://hub.docker.com/r/rexypoo/openssl" \
+        --label org.opencontainers.image.documentation="https://hub.docker.com/r/rexypoo/openssl" \
+        --label org.opencontainers.image.source="https://github.com/Rexypoo/docker-openssl" \
+        --label org.opencontainers.image.version="${SOURCE_BRANCH}" \
+        --label org.opencontainers.image.revision="${SOURCE_COMMIT}" \
+        --label org.opencontainers.image.vendor="rexypoo" \
+        --label org.opencontainers.image.licenses="(MIT AND OpenSSL)" \
+        --label org.opencontainers.image.ref.name="${SOURCE_BRANCH}-${TARGET}" \
+        --label org.opencontainers.image.title="rexypoo/openssl" \
+        --label org.opencontainers.image.description="A lightweight openssl image built from source." \
+        --label org.label-schema.docker.cmd="docker run -it --rm rexypoo/openssl <arguments>" \
+        --label org.label-schema.docker.cmd.devel="docker run -it --rm rexypoo/openssl:dev" \
+        --label org.label-schema.docker.cmd.debug="docker exec -it <container> sh" \
+        --label org.label-schema.docker.cmd.help="docker run -it --rm rexypoo/openssl list -help" \
+        --target $TARGET \
+        -t ${IMAGE_NAME}-${TARGET} .
+    docker push ${IMAGE_NAME}-${TARGET}
+}
+
+for TARGET in $TARGETS; do
+    echo "Creating target: $TARGET"
+    build_target
+done

@@ -1,6 +1,6 @@
 # docker-openssl
 
-A Docker build context create a clean Docker image with [OpenSSL]. The resulting files can be copied into another image to [update OpenSSL](#updating-openssl-in-docker-images) or the image can be [run from the command line](#running-openssl-from-the-command-line).
+A Docker build context to create a clean Docker image with [OpenSSL]. The resulting files can be copied into another image to [update OpenSSL](#updating-openssl-in-docker-images) or the image can be [run from the command line](#running-openssl-from-the-command-line).
 
 # Prerequisites
 
@@ -32,12 +32,12 @@ See the Dockerfile labels related to `org.label-schema.docker.cmd` for more info
 
 The OpenSSL binary compiled by this Dockerfile is statically linked such that you should be able to overwrite the existing binary as a layer of your Dockerfile build e.g.:
 ```docker
-COPY --from=rexypoo/openssl:1.1.1a-distroless /usr/local/bin/openssl </path/to/openssl>
+COPY --from=rexypoo/openssl:1.1.1-distroless /usr/local/bin/openssl </path/to/openssl>
 ```
 
 Some features of OpenSSL cannot be statically linked and may not work with the above. In that case you'll need to copy the entire contents of `/usr/local` e.g.:
 ```docker
-COPY --from=rexypoo/openssl:1.1.1a /usr/local /usr/local
+COPY --from=rexypoo/openssl:1.1.1 /usr/local /usr/local
 ```
 You may need to adjust the `$PATH` environment variable in your image to prioritize the copy of OpenSSL at `/usr/local/bin`.
 

@@ -5,10 +5,12 @@
 
 set -e
 
-# Build image using supplied ARGS
-BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-echo "Building $IMAGE_NAME with BUILD_DATE=${BUILD_DATE} and GIT_SHA1=${GIT_SHA1}"
+BUILD_TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+# Build the base image with build-time args
 docker build \
-    --build-arg BUILD_DATE=$BUILD_DATE \
-    --build-arg VCS_REF=$GIT_SHA1 \
+    --label org.opencontainers.image.created="${BUILD_TIMESTAMP}" \
+    --label org.opencontainers.image.version="${SOURCE_BRANCH}" \
+    --label org.opencontainers.image.revision="${SOURCE_COMMIT}" \
+    --label org.opencontainers.image.ref.name="${SOURCE_BRANCH}-alpine" \
     -t $IMAGE_NAME .
