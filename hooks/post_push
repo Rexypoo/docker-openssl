@@ -5,6 +5,8 @@
 
 set -e
 
+echo "Checking for additional tags related to $SOURCE_BRANCH"
+
 push_tags () {
     echo "Tagging ${tag} from ${IMAGE_NAME}"
     docker tag ${DOCKER_REPO}:${base_tag} ${DOCKER_REPO}:${tag}
@@ -12,7 +14,7 @@ push_tags () {
 }
 
 # Tag and push image for each additional tag
-case $CACHE_TAG in
+case $SOURCE_BRANCH in
     "1.1.1")
         base_tag="1.1.1"
         tags=( "1.1.1-alpine" "1.1.1-stable" "stable" "lts" "latest" )
