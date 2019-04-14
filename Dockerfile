@@ -1,6 +1,7 @@
 FROM alpine AS build
 WORKDIR /build/tmp
 RUN apk add --no-cache \
+    g++ \
     gcc \
     libc-dev \
     linux-headers \
