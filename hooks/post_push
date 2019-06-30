@@ -51,23 +51,23 @@ case $SOURCE_BRANCH in
             push_tags
         done
         ;;
-    "1.1.1b")
-        base_tag="1.1.1b"
-        tags=( "1.1.1b-alpine" )
+    "1.1.1c")
+        base_tag="1.1.1c"
+        tags=( "1.1.1c-alpine" )
         for tag in "${tags[@]}"; do
             push_tags
         done
         ;;
-    "1.1.0j")
-        base_tag="1.1.0j"
-        tags=( "1.1.0j-alpine" )
+    "1.1.0k")
+        base_tag="1.1.0k"
+        tags=( "1.1.0k-alpine" )
         for tag in "${tags[@]}"; do
             push_tags
         done
         ;;
-    "1.0.2r")
-        base_tag="1.0.2r"
-        tags=( "1.0.2r-alpine" )
+    "1.0.2s")
+        base_tag="1.0.2s"
+        tags=( "1.0.2s-alpine" )
         for tag in "${tags[@]}"; do
             push_tags
         done
