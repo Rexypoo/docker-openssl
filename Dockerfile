@@ -38,7 +38,7 @@ ENTRYPOINT ["openssl"]
 FROM clean AS dev
 RUN apk add --no-cache \
     bash \
-    man
+    mandoc
 ENTRYPOINT ["bash"]
 
 FROM clean AS release
