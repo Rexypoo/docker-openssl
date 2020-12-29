@@ -1,9 +1,9 @@
 FROM alpine AS fetch_source
 WORKDIR /build/tmp
-ADD https://openssl.org/source/openssl-1.0.2r.tar.gz openssl-src.tar.gz
+ADD https://openssl.org/source/openssl-1.0.2u.tar.gz openssl-src.tar.gz
 
 FROM fetch_source AS verify
-ADD https://openssl.org/source/openssl-1.0.2r.tar.gz.asc \
+ADD https://openssl.org/source/openssl-1.0.2u.tar.gz.asc \
     openssl-src.tar.gz.asc
 ENV key_ids='8657ABB260F056B1E5190839D9C4D26D0E604491 \
              7953AC1FBC3DC8B3B292393ED5E9E43F7DF9EE8C'
@@ -53,7 +53,7 @@ ENTRYPOINT ["openssl"]
 FROM clean AS dev
 RUN apk add --no-cache \
     bash \
-    man
+    mandoc
 ENTRYPOINT ["bash"]
 
 FROM clean AS release
